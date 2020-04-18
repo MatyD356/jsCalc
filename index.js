@@ -24,16 +24,22 @@ const execute = () => {
 
 /*----EVENT HANDLING----*/
 //key handling
-window.addEventListener("keydown", (e) => {
+window.addEventListener("keyup", (e) => {
     if (/[0-9]/gi.test(e.key)) {
+        //preventing multiple 0 at start
+        if (displayInput.textContent.length === 1 && e.key === "0") { }
+        else { displayInput.textContent += e.key; }
+
+    } else if (/(\+|-|\*|\/|\.)/i.test(e.key)) {
         displayInput.textContent += e.key;
-    } else if (/^(\+|-|\*|\/|\||\^|\(|.|\))$/gi.test(e.key)) {
-        displayInput.textContent += e.key;
+
     } else if (/(=)/gi.test(e.key)) {
         execute();
+
     }
     else if (e.key == "Backspace") {
         undo();
+
     }
 });
 
