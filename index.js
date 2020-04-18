@@ -2,6 +2,16 @@ let displayInput = document.querySelector(".display-input");
 let numberAndExecutionButtons = document.querySelectorAll(".operation-button, .number-button");
 let equalButton = document.querySelector(".equal");
 let undoButton = document.querySelector(".undo")
+let clearButton = document.querySelector(".clear")
+
+//clear function
+const clear = () => {
+    displayInput.textContent = "";
+}
+//clear function
+const undo = () => {
+    displayInput.textContent = displayInput.textContent.split("").slice(0, -1).join("")
+}
 
 //key handling
 window.addEventListener("keydown", (e) => {
@@ -18,11 +28,8 @@ window.addEventListener("keydown", (e) => {
         displayInput.textContent += e.target.textContent;
     });
 });
-//undo function
-const undo = () => {
-    displayInput.textContent = displayInput.textContent.split("").slice(0, -1).join("")
-}
 undoButton.addEventListener("click", undo)
+clearButton.addEventListener("click", clear)
 
 //evaluating input
 //eval sub console.log((Function('"use strict"; return (' + displayInput.textContent + ')'))())
