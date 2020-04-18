@@ -1,5 +1,5 @@
 let displayInput = document.querySelector(".display-input")
-let allButtons = document.querySelectorAll(".btn")
+let numberAndExecutionButtons = document.querySelectorAll(".operation-button, .number-button")
 
 //key handling
 window.addEventListener("keydown", (e) => {
@@ -9,11 +9,10 @@ window.addEventListener("keydown", (e) => {
 });
 
 // click hanling 
-[...allButtons].map(item => {
+[...numberAndExecutionButtons].map(item => {
     item.addEventListener("click", (e) => {
-        if (e.target.textContent === "AC" || e.target.textContent === "undo") { }
-        else {
-            displayInput.textContent += e.target.textContent;
-        }
+        displayInput.textContent += e.target.textContent;
     });
 });
+
+//evaluating input
