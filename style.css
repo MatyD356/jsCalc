@@ -1,22 +1,51 @@
 * {
-  box-sizing: 0;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-.container {
-  height: 100vh;
-}
-.title {
-  text-align: center;
+/* layout */
+.calc-container {
+  min-height: 100vh;
 }
 .calc-container,
 .display {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
 }
+/* display section */
+.display {
+  margin: 0 5%;
+  height: 40vh;
+}
+.display-history {
+  height: inherit;
+  border: 2px solid red;
+}
+.display-input {
+  height: 20vh;
+  padding: 1.5rem;
+  font-size: 1rem;
+}
+/* button grid */
 .buttons-container {
+  margin: 5%;
+  min-height: 40vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: ;
+  grid-template: repeat(5, 1fr) / repeat(4, 1fr);
+  gap: 5%;
+}
+.clear,
+.execute {
+  grid-column: span 2;
+}
+.clear {
+  grid-row: 4 / 5;
+}
+.execute {
+  grid-row: 5/6;
+}
+/* buttons */
+.btn {
+  font-size: 2rem;
 }

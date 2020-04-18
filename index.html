@@ -7,34 +7,32 @@
     <title>Calc</title>
   </head>
   <body>
-    <content class="container">
-      <h1 class="title">Calc</h1>
-      <div class="calc-container">
-        <div class="display">
-          <input class="display-input" type="text" />
-        </div>
-        <div class="buttons-container">
-          <button class="btn number-button">0</button>
-          <button class="btn number-button">1</button>
-          <button class="btn number-button">3</button>
-          <button class="btn number-button">2</button>
-          <button class="btn number-button">4</button>
-          <button class="btn number-button">5</button>
-          <button class="btn number-button">6</button>
-          <button class="btn number-button">7</button>
-          <button class="btn number-button">8</button>
-          <button class="btn number-button">9</button>
-          <button class="btn operation-button">+</button>
-          <button class="btn operation-button">-</button>
-          <button class="btn operation-button">*</button>
-          <button class="btn operation-button">/</button>
-          <button class="btn decimal-button">.</button>
-          <button class="btn operation-button">undo</button>
-          <button class="btn operation-button">AC</button>
-          <button class="btn operation-button">=</button>
-        </div>
+    <div class="calc-container">
+      <div class="display">
+        <div class="display-history"></div>
+        <input class="display-input" type="text" />
       </div>
-    </content>
+      <div class="buttons-container">
+        <button class="btn number-button">0</button>
+        <button class="btn number-button">1</button>
+        <button class="btn number-button">3</button>
+        <button class="btn number-button">2</button>
+        <button class="btn number-button">4</button>
+        <button class="btn number-button">5</button>
+        <button class="btn number-button">6</button>
+        <button class="btn number-button">7</button>
+        <button class="btn number-button">8</button>
+        <button class="btn number-button">9</button>
+        <button class="btn operation-button add">+</button>
+        <button class="btn operation-button subtract">-</button>
+        <button class="btn operation-button multiply">*</button>
+        <button class="btn operation-button divide">/</button>
+        <button class="btn decimal-button decimal">.</button>
+        <button class="btn operation-button undo">undo</button>
+        <button class="btn operation-button clear">AC</button>
+        <button class="btn operation-button execute">=</button>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
