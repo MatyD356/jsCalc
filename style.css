@@ -11,21 +11,23 @@
 .display {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 /* display section */
 .display {
   margin: 0 5%;
-  height: 40vh;
+  height: 30vh;
 }
 .display-history {
   height: inherit;
-  border: 2px solid red;
+  border: solid 1px gray;
+  border-bottom: none;
 }
 .display-input {
-  height: 20vh;
-  padding: 1.5rem;
-  font-size: 1.5rem;
+  border: solid 1px gray;
+  height: 10vh;
+  padding: 1rem;
+  font-size: 1rem;
 }
 /* button grid */
 .buttons-container {
@@ -33,32 +35,25 @@
   min-height: 40vh;
   display: grid;
   grid-template: repeat(5, 1fr) / repeat(4, 1fr);
-  gap: 5%;
-}
-.clear,
-.execute {
-  grid-column: span 2;
-}
-.clear {
-  grid-row: 4 / 5;
+  gap: 2%;
+  margin-bottom: 25%;
 }
 .execute {
-  grid-row: 5/6;
+  grid-column: span 3;
 }
+
 /* buttons */
 .btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 600px) {
   .calc-container {
     margin: 0 auto;
-    width: 70vw;
   }
 }
 @media (min-width: 1000px) {
   .calc-container {
-    margin: 0 auto;
     width: 50vw;
   }
 }
