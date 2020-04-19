@@ -4,15 +4,21 @@ const numberAndExecutionButtons = document.querySelectorAll(".operation-button, 
 const equalButton = document.querySelector(".equal");
 const undoButton = document.querySelector(".undo")
 const clearButton = document.querySelector(".clear")
+let dotAvibletoUse = true;
 
 /*----FUNCTIONS----*/
 //clear function
 const clear = () => {
     displayInput.textContent = "";
+    dotAvibletoUse = true;
 };
 
 //clear function
 const undo = () => {
+    //if deleted element is a dot allow another
+    if (displayInput.textContent[displayInput.textContent.length - 1] === ".") {
+        dotAvibletoUse = true;
+    }
     displayInput.textContent = displayInput.textContent.split("").slice(0, -1).join("")
 };
 
@@ -21,32 +27,46 @@ const undo = () => {
 const execute = () => {
     console.log('xd')
 };
-
-/*----EVENT HANDLING----*/
-//key handling
-window.addEventListener("keyup", (e) => {
-    if (/[0-9]/gi.test(e.key)) {
+const validation = (context) => {
+    if (/[0-9]/gi.test(context)) {
         //preventing multiple 0 at start
-        if (displayInput.textContent.length === 1 && e.key === "0") { }
-        else { displayInput.textContent += e.key; }
+        if (displayInput.textContent.length === 1 && context === "0") { }
+        else { displayInput.textContent += context; }
 
-    } else if (/(\+|-|\*|\/|\.)/i.test(e.key)) {
-        displayInput.textContent += e.key;
+    } else if (/(\+|-|\*|\/)/i.test(context)) {
+        //preventing multiple special characters
+        if (/[0-9]/gi.test(displayInput.textContent[displayInput.textContent.length - 1])) {
+            displayInput.textContent += context;
+            dotAvibletoUse = true;
+        }
 
-    } else if (/(=)/gi.test(e.key)) {
+    } else if (/(\.)/i.test(context)) {
+        //preventing dot after special character
+        if (/(\+|-|\*|\/)/i.test(displayInput.textContent[displayInput.textContent.length - 1])) { } else if (dotAvibletoUse) {
+            displayInput.textContent += context;
+            dotAvibletoUse = false;
+        }
+    }
+    else if (/(=)/gi.test(context)) {
         execute();
 
     }
-    else if (e.key == "Backspace") {
+    else if (context == "Backspace") {
         undo();
 
     }
+}
+
+/*----EVENT HANDLING----*/
+//key handling
+window.addEventListener("keydown", (e) => {
+    validation(e.key)
 });
 
 // click hanling 
 [...numberAndExecutionButtons].map(item => {
     item.addEventListener("click", (e) => {
-        displayInput.textContent += e.target.textContent;
+        validation(e.target.textContent)
     });
 });
 undoButton.addEventListener("click", undo)
