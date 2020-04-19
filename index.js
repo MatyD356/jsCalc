@@ -1,5 +1,6 @@
 /*----VARIABLES----*/
 const displayInput = document.querySelector(".display-input");
+const displayHistory = document.querySelector(".display-history");
 const numberAndExecutionButtons = document.querySelectorAll(".operation-button, .number-button");
 const equalButton = document.querySelector(".equal");
 const undoButton = document.querySelector(".undo")
@@ -25,7 +26,10 @@ const undo = () => {
 //eval func
 //eval sub console.log((Function('"use strict"; return (' + displayInput.textContent + ')'))())
 const execute = () => {
-    console.log('xd')
+    const p = document.createElement("p");
+    p.textContent = displayInput.textContent + " = " + (Function('"use strict"; return (' + displayInput.textContent + ')'))();
+    displayHistory.appendChild(p)
+    displayInput.textContent = (Function('"use strict"; return (' + displayInput.textContent + ')'))();
 };
 const validation = (context) => {
     if (/[0-9]/gi.test(context)) {
