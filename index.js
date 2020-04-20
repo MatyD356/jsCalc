@@ -8,8 +8,21 @@ const clearButton = document.querySelector(".clear")
 let dotAvibletoUse = true;
 
 /*----FUNCTIONS----*/
+//trailing zeros fix and long numbers
+const trailingZeros = (num) => {
+    let newStr = num.toString();
+    //trailing zeros
+    if (newStr[newStr.length - 1] === "1") {
+        return parseFloat(newStr.slice(0, -1).replace(/0*$/, ""), 10);
+    } else if (newStr.length > 10) {
+        return num.toFixed(2) 
+    } else {
+        return num;
+    }
+}
 //clear function
 const clear = () => {
+    displayHistory.textContent = "";
     displayInput.textContent = "";
     dotAvibletoUse = true;
 };
@@ -24,12 +37,19 @@ const undo = () => {
 };
 
 //eval func
-//eval sub console.log((Function('"use strict"; return (' + displayInput.textContent + ')'))())
 const execute = () => {
     const p = document.createElement("p");
-    p.textContent = displayInput.textContent + " = " + (Function('"use strict"; return (' + displayInput.textContent + ')'))();
-    displayHistory.appendChild(p)
-    displayInput.textContent = (Function('"use strict"; return (' + displayInput.textContent + ')'))();
+    let output = (Function('"use strict"; return (' + displayInput.textContent + ')'))();
+    //preventing displaying infinity
+    if (output == Infinity) {
+        displayInput.textContent = "";
+        output = "ERROR"
+        p.textContent = displayInput.textContent + "=" + output;
+    } else {
+        p.textContent = displayInput.textContent + "=" + trailingZeros(output);
+        displayInput.textContent = trailingZeros(output);
+    }
+    displayHistory.appendChild(p);
 };
 const validation = (context) => {
     if (/[0-9]/gi.test(context)) {
