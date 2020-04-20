@@ -39,7 +39,13 @@ const undo = () => {
 //eval func
 const execute = () => {
     const p = document.createElement("p");
-    let output = (Function('"use strict"; return (' + displayInput.textContent + ')'))();
+    let output = null;
+    //displaying ERROR on empty call
+    if (displayInput.textContent.length < 1) {
+        output = Infinity
+    } else {
+        output = (Function('"use strict"; return (' + displayInput.textContent + ')'))();
+    }
     //preventing displaying infinity
     if (output == Infinity) {
         displayInput.textContent = "";
@@ -54,7 +60,11 @@ const execute = () => {
 const validation = (context) => {
     if (/[0-9]/gi.test(context)) {
         //preventing multiple 0 at start
-        if (displayInput.textContent.length === 1 && context === "0") { }
+        if (displayInput.textContent.length === 1 && context === "0") {
+            if (/[1-9]/gi.test(displayInput.textContent[displayInput.textContent.length - 1])) {
+                displayInput.textContent += context;
+            }
+        }
         else { displayInput.textContent += context; }
 
     } else if (/(\+|-|\*|\/)/i.test(context)) {
