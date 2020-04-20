@@ -15,7 +15,7 @@ const trailingZeros = (num) => {
     if (newStr[newStr.length - 1] === "1") {
         return parseFloat(newStr.slice(0, -1).replace(/0*$/, ""), 10);
     } else if (newStr.length > 10) {
-        return num.toFixed(2) 
+        return num.toFixed(2)
     } else {
         return num;
     }
@@ -73,11 +73,9 @@ const validation = (context) => {
     }
     else if (/(=)/gi.test(context)) {
         execute();
-
     }
     else if (context == "Backspace") {
         undo();
-
     }
 }
 
