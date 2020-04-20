@@ -1,10 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+:root {
+  --primary: #cd3f22;
+  --secondary: #887b80;
+  --background: #2c2126;
+  --font-color: #eee7e1;
+  --addidtional: #9d352d;
+}
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
+body {
+  background-color: var(--background);
+  font-family: "Lato", sans-serif;
+}
 /* layout */
 .calc-container {
+  color: var(--font-color);
+  background-color: var(--secondary);
   min-height: 100vh;
 }
 .calc-container,
@@ -15,22 +30,38 @@
 }
 /* display section */
 .display {
+  background-color: var(--background);
   margin: 0 5%;
   height: 30vh;
+  border-radius: 5px;
 }
 .display-history {
   height: inherit;
-  border: solid 1px gray;
   border-bottom: none;
   padding: 1rem;
+  overflow-y: auto;
+  border-bottom: 1px solid var(--secondary);
+}
+.display-history::-webkit-scrollbar,
+.display-input::-webkit-scrollbar {
+  background-color: var(--background);
+}
+.display-history::-webkit-scrollbar-corner,
+.display-input::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+.display-history::-webkit-scrollbar-thumb,
+.display-input::-webkit-scrollbar-thumb {
+  background-color: var(--addidtional);
+  border-radius: 5px;
 }
 .display-input {
-  border: solid 1px gray;
   height: 10vh;
   padding: 0 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
+  overflow-x: auto;
 }
 /* button grid */
 .buttons-container {
@@ -45,15 +76,30 @@
 }
 /* buttons */
 .btn {
+  cursor: pointer;
+  color: var(--font-color);
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
   font-size: 1.5rem;
+  font-weight: 700;
+}
+.operation-button {
+  background-color: var(--addidtional);
+}
+.execution-button {
+  background-color: var(--addidtional);
 }
 
 @media (min-width: 600px) {
   .calc-container {
     margin: 0 auto;
   }
+  .btn {
+    font-size: 2rem;
+  }
 }
-@media (min-width: 1000px) {
+@media (min-width: 1020px) {
   .calc-container {
     width: 50vw;
   }
